@@ -5,4 +5,4 @@
   (:export :pipe-output
            :pipe-input
            :close-pipe
-           :with-open-pipe)
+           :with-open-pipe))
