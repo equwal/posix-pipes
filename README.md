@@ -19,5 +19,20 @@ LGPL
 
 (ie. no mixed use)
 
-## TODO
-Add ecl support
+## Support chart
+
+   | Name      |    Version |   Support    | Date |
+   |-----------+------------+--------------+------|
+   | allegro   |            |      y       |      |
+   | abcl      |            |      -       |      |
+   | ccl       |            |      -       |      |
+   | cmucl     |            |      y       |      |
+   | clasp     |            |      -       |      |
+   | clisp     |    2.49.92 |      y       | 2025 |
+   | ecl       |    24.5.10 |      y       | 2025 |
+   | gcl       |            |      y       |      |
+   | lispworks |            |      y       |      |
+   | lucid     |            |      y       |      |
+   | sbcl      |      2.5.8 |      y       | 2025 |
+   | xcl       |            |      -       |      |
+
