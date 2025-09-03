@@ -9,13 +9,15 @@
   #+clisp (ext:make-pipe-output-stream (format nil "~a~{ ~a~}" prog args))
   #+cmu (ext:process-input (ext:run-program prog args :input :stream
                                                       :output t :wait nil))
+  #+ecl (ext:run-program prog args :input :stream
+                                   :output t :wait nil)
   #+gcl (si::fp-input-stream (apply #'si:run-process prog args))
   #+lispworks (sys::open-pipe (format nil "~a~{ ~a~}" prog args)
                               :direction :output)
   #+lucid (lcl:run-program prog :arguments args :wait nil :output :stream)
   #+sbcl (sb-ext:process-input (sb-ext:run-program prog args :input :stream
                                                              :output t :wait nil))
-  #-(or allegro clisp cmu gcl lispworks lucid sbcl)
+  #-(or allegro clisp cmu gcl lispworks lucid sbcl ecl)
   (error 'not-implemented :proc (list 'pipe-output prog args)))
 
 (defun pipe-input (prog &rest args)
@@ -25,13 +27,15 @@
   #+clisp (ext:make-pipe-input-stream (format nil "~a~{ ~a~}" prog args))
   #+cmu (ext:process-output (ext:run-program prog args :output :stream
                                                        :error t :input t :wait nil))
+  #+ecl (two-way-stream-output-stream (ext:run-program prog args :output :stream
+                                                                :input t :wait nil))
   #+gcl (si::fp-output-stream (apply #'si:run-process prog args))
   #+lispworks (sys::open-pipe (format nil "~a~{ ~a~}" prog args)
                               :direction :input)
   #+lucid (lcl:run-program prog :arguments args :wait nil :input :stream)
   #+sbcl (sb-ext:process-output (sb-ext:run-program prog args :output :stream
                                                               :error t :input t :wait nil))
-  #-(or allegro clisp cmu gcl lispworks lucid sbcl)
+  #-(or allegro clisp cmu gcl lispworks lucid sbcl ecl)
   (error 'not-implemented :proc (list 'pipe-input prog args)))
 
 ;;; Allegro CL: a simple `close' does NOT get rid of the process.
